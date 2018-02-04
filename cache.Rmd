@@ -1,0 +1,28 @@
+---
+title: "Cache"
+author: "Tajti András - Tóth Tímea"
+date: '2018 február 3 '
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r base, cache=TRUE}
+
+#my_df <- data.frame(x = 1, y = 1:10)
+my_df <- data.frame(x = 2, y = 1:10)
+
+```
+
+Az elsõ plot nem figyeli a *base* chunk változását, ezért továbbra is `x=1` értéket ábrázol, a második plot érzékeli a `my_df` változását, és így `x=2` értéket ábrázol.
+
+```{r plot, echo=FALSE, cache=TRUE}
+plot(my_df)
+```
+
+```{r plot_depends, echo=FALSE, cache=TRUE, dependson="base"}
+plot(my_df)
+```

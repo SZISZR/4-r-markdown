@@ -1,0 +1,25 @@
+---
+title: '`r paste0(params$p_country," (",params$p_year,")")`'
+author: "Tajti András - Tóth Tímea"
+date: '2018 február 3 '
+output: html_document
+params:
+  p_year: 2007
+  p_country: "Hungary"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```
+
+```{r}
+
+library(gapminder)
+library(dplyr)
+
+# A paramétereknek megfelelõen szûrjük az adatbázist
+(filtered_df <- gapminder %>%
+  filter(year == params$p_year & country == params$p_country))
+```
+
+In `r params$p_year` `r format(filtered_df$pop, big.mark = ".")` people lived in `r params$p_country`, life expectancy was `r format(filtered_df$lifeExp, digits = 2)` years, GDP per capita `r format(filtered_df$gdpPercap, big.mark = ".", digits = 2)`.
